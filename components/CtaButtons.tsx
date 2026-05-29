@@ -8,11 +8,11 @@ export default function CtaButtons() {
   return (
     <div className="flex items-center gap-4 mt-10">
       <Link
-        href="/case-studies"
+        href="/work"
         className="inline-flex items-center gap-2 border border-white/20 px-6 py-3 text-[11px] tracking-[0.18em] uppercase text-white transition-all hover:border-white/50 hover:bg-white/5"
         style={{ fontFamily: SANS, borderRadius: "2px" }}
       >
-        View Case Studies
+        View Work
       </Link>
       <Link
         href="/contact"
