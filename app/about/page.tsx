@@ -10,7 +10,11 @@ const SANS = "'DM Sans', ui-sans-serif, sans-serif";
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1], delay },
+  transition: {
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1] as const,
+    delay,
+  },
 });
 
 const SKILLS = [
@@ -85,22 +89,26 @@ const TIMELINE = [
   {
     year: "2025",
     title: "Founder & Engineer — Trasora",
-    body: "Building a social music platform from zero. Architected the full stack (Next.js, Spring Boot, PostgreSQL), implemented GA4 event schemas, and drove 100+ organic users within 90 days of launch.",
+    body:
+      "Building a social music platform from zero. Architected the full stack (Next.js, Spring Boot, PostgreSQL), implemented GA4 event schemas, and drove 100+ organic users within 90 days of launch.",
   },
   {
     year: "2025",
     title: "Web Developer (Contract) — Founders In Focus",
-    body: "Built a conversion-focused podcast website with GA4, Google Search Console, and mobile-first UX. Integrated automated distribution pipelines for Spotify and YouTube.",
+    body:
+      "Built a conversion-focused podcast website with GA4, Google Search Console, and mobile-first UX. Integrated automated distribution pipelines for Spotify and YouTube.",
   },
   {
     year: "2024",
     title: "Baylor University — BBA Marketing, Summa Cum Laude",
-    body: "GPA 3.97/4.0. 2024 Marketing Student of the Year. Presidential Scholar. Led a $10K integrated media campaign for Kid's R Kids as a client project.",
+    body:
+      "GPA 3.97/4.0. 2024 Marketing Student of the Year. Presidential Scholar. Led a $10K integrated media campaign for Kid's R Kids as a client project.",
   },
   {
     year: "2023",
     title: "Founder & Marketing Lead — Desentify.com",
-    body: "Managed $5K+ in paid media across TikTok, Meta, and Google Ads. Improved ROAS by 22% and conversion rate by 18% through A/B testing, Hotjar analysis, and 50+ ad creative iterations.",
+    body:
+      "Managed $5K+ in paid media across TikTok, Meta, and Google Ads. Improved ROAS by 22% and conversion rate by 18% through A/B testing, Hotjar analysis, and 50+ ad creative iterations.",
   },
 ];
 
@@ -129,6 +137,7 @@ export default function AboutPage() {
             >
               About Me
             </p>
+
             <h1
               className="leading-[0.9] tracking-tight text-white"
               style={{
@@ -142,13 +151,14 @@ export default function AboutPage() {
                 Raleigh-Durham, NC.
               </span>
             </h1>
+
             <div
               className="w-12 h-px mt-6"
               style={{ background: YELLOW, opacity: 0.6 }}
             />
           </motion.div>
 
-          {/* Stats row */}
+          {/* Stats */}
           <motion.div
             className="grid grid-cols-2 lg:grid-cols-4 gap-px mb-16 border border-white/5 rounded-sm overflow-hidden"
             {...fadeUp(0.15)}
@@ -168,6 +178,7 @@ export default function AboutPage() {
                 >
                   {stat.value}
                 </p>
+
                 <p
                   className="text-[11px] tracking-[0.1em] uppercase font-light"
                   style={{ color: "rgba(255,255,255,0.35)" }}
@@ -179,7 +190,7 @@ export default function AboutPage() {
           </motion.div>
 
           <div className="grid lg:grid-cols-12 gap-16">
-            {/* Left — bio + timeline */}
+            {/* Left */}
             <div className="lg:col-span-7 flex flex-col gap-12">
               {/* Bio */}
               <motion.div {...fadeUp(0.2)}>
@@ -187,21 +198,23 @@ export default function AboutPage() {
                   className="text-[16px] leading-[1.85] font-light"
                   style={{ color: "rgba(255,255,255,0.6)" }}
                 >
-                  I&apos;m a full-stack engineer and growth marketer who operates at
-                  the intersection of clean architecture and measurable
-                  outcomes. I build products end-to-end — from Django backends
-                  and React frontends to the GA4 instrumentation that tracks how
-                  users actually behave inside them.
+                  I&apos;m a full-stack engineer and growth marketer who
+                  operates at the intersection of clean architecture and
+                  measurable outcomes. I build products end-to-end — from
+                  Django backends and React frontends to the GA4
+                  instrumentation that tracks how users actually behave
+                  inside them.
                 </p>
+
                 <p
                   className="text-[16px] leading-[1.85] font-light mt-5"
                   style={{ color: "rgba(255,255,255,0.38)" }}
                 >
-                  Currently building Trasora, a social music platform, where I
-                  own everything from the Spring Boot API to paid acquisition
-                  strategy. Summa Cum Laude graduate from Baylor University,
-                  2024 Marketing Student of the Year, with certifications in
-                  GA4, HubSpot, SEMrush, and AWS.
+                  Currently building Trasora, a social music platform,
+                  where I own everything from the Spring Boot API to paid
+                  acquisition strategy. Summa Cum Laude graduate from
+                  Baylor University, 2024 Marketing Student of the Year,
+                  with certifications in GA4, HubSpot, SEMrush, and AWS.
                 </p>
               </motion.div>
 
@@ -216,6 +229,7 @@ export default function AboutPage() {
                 >
                   Experience & Education
                 </p>
+
                 <div className="flex flex-col">
                   {TIMELINE.map((item, i) => (
                     <div
@@ -225,36 +239,50 @@ export default function AboutPage() {
                       {i < TIMELINE.length - 1 && (
                         <div
                           className="absolute left-[calc(1/12*100%+6px)] top-6 bottom-0 w-px"
-                          style={{ background: "rgba(255,255,255,0.05)" }}
+                          style={{
+                            background: "rgba(255,255,255,0.05)",
+                          }}
                         />
                       )}
+
                       <div className="col-span-2 pt-0.5">
                         <span
                           className="text-[11px] tracking-widest font-medium"
-                          style={{ color: YELLOW, fontFamily: "monospace" }}
+                          style={{
+                            color: YELLOW,
+                            fontFamily: "monospace",
+                          }}
                         >
                           {item.year}
                         </span>
                       </div>
+
                       <div className="col-span-1 flex justify-center pt-1.5">
                         <div
                           className="w-2 h-2 rounded-full flex-shrink-0"
                           style={{
                             background: "rgba(255,255,255,0.12)",
-                            border: "1px solid rgba(255,255,255,0.2)",
+                            border:
+                              "1px solid rgba(255,255,255,0.2)",
                           }}
                         />
                       </div>
+
                       <div className="col-span-9">
                         <p
                           className="text-[14px] font-medium mb-1.5"
-                          style={{ color: "rgba(255,255,255,0.8)" }}
+                          style={{
+                            color: "rgba(255,255,255,0.8)",
+                          }}
                         >
                           {item.title}
                         </p>
+
                         <p
                           className="text-[13px] leading-[1.7] font-light"
-                          style={{ color: "rgba(255,255,255,0.35)" }}
+                          style={{
+                            color: "rgba(255,255,255,0.35)",
+                          }}
                         >
                           {item.body}
                         </p>
@@ -265,9 +293,12 @@ export default function AboutPage() {
               </motion.div>
             </div>
 
-            {/* Right — skills + certs + resume */}
+            {/* Right */}
             <div className="lg:col-span-5">
-              <motion.div className="flex flex-col gap-10" {...fadeUp(0.3)}>
+              <motion.div
+                className="flex flex-col gap-10"
+                {...fadeUp(0.3)}
+              >
                 {/* Skills */}
                 <div>
                   <p
@@ -279,15 +310,20 @@ export default function AboutPage() {
                   >
                     Skills & Stack
                   </p>
+
                   <div className="flex flex-col gap-7">
                     {SKILLS.map((group) => (
                       <div key={group.category}>
                         <p
                           className="text-[10px] tracking-[0.18em] uppercase mb-3"
-                          style={{ color: YELLOW, fontFamily: "monospace" }}
+                          style={{
+                            color: YELLOW,
+                            fontFamily: "monospace",
+                          }}
                         >
                           {group.category}
                         </p>
+
                         <div className="flex flex-wrap gap-2">
                           {group.items.map((skill) => (
                             <span
@@ -295,7 +331,8 @@ export default function AboutPage() {
                               className="text-[12px] px-3 py-1.5 border border-white/8 rounded-sm font-light"
                               style={{
                                 color: "rgba(255,255,255,0.5)",
-                                background: "rgba(255,255,255,0.03)",
+                                background:
+                                  "rgba(255,255,255,0.03)",
                               }}
                             >
                               {skill}
@@ -318,16 +355,23 @@ export default function AboutPage() {
                   >
                     Certifications
                   </p>
+
                   <div className="flex flex-col gap-2.5">
                     {CERTIFICATIONS.map((cert) => (
-                      <div key={cert} className="flex items-center gap-2.5">
+                      <div
+                        key={cert}
+                        className="flex items-center gap-2.5"
+                      >
                         <span
                           className="w-1 h-1 rounded-full flex-shrink-0"
                           style={{ background: YELLOW }}
                         />
+
                         <span
                           className="text-[12px] font-light"
-                          style={{ color: "rgba(255,255,255,0.45)" }}
+                          style={{
+                            color: "rgba(255,255,255,0.45)",
+                          }}
                         >
                           {cert}
                         </span>
@@ -336,7 +380,7 @@ export default function AboutPage() {
                   </div>
                 </div>
 
-                {/* Resume CTAs */}
+                {/* Resume */}
                 <div className="pt-8 border-t border-white/5">
                   <p
                     className="text-[11px] tracking-[0.22em] uppercase mb-5"
@@ -347,6 +391,7 @@ export default function AboutPage() {
                   >
                     Download Résumé
                   </p>
+
                   <div className="flex flex-col gap-3">
                     {[
                       {
@@ -355,15 +400,18 @@ export default function AboutPage() {
                       },
                       {
                         label: "Growth Marketing",
-                        file: "/Gary_McCart_Growth_Marketing.pdf",
+                        file:
+                          "/Gary_McCart_Growth_Marketing.pdf",
                       },
                       {
                         label: "Digital Marketing",
-                        file: "/Gary_McCart_Digital_Marketing.pdf",
+                        file:
+                          "/Gary_McCart_Digital_Marketing.pdf",
                       },
                       {
                         label: "SEO & Paid Media",
-                        file: "/Gary_McCart_SEO_Paid_Marketer.pdf",
+                        file:
+                          "/Gary_McCart_SEO_Paid_Marketer.pdf",
                       },
                     ].map(({ label, file }) => (
                       <a
@@ -378,6 +426,7 @@ export default function AboutPage() {
                         }}
                       >
                         {label}
+
                         <svg
                           width="10"
                           height="10"
@@ -398,6 +447,7 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
+
         <FooterBar />
       </div>
     </main>
