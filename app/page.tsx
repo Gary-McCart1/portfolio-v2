@@ -1,6 +1,5 @@
 import Sidebar from "@/components/Sidebar";
 import HeroSection from "@/components/HeroSection";
-import FooterBar from "@/components/FooterBar";
 
 export default function HomePage() {
   return (

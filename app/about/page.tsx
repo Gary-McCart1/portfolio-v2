@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
-import FooterBar from "@/components/FooterBar";
 
 const YELLOW = "#F5C518";
 const SANS = "'DM Sans', ui-sans-serif, sans-serif";
@@ -89,26 +88,22 @@ const TIMELINE = [
   {
     year: "2025",
     title: "Founder & Engineer — Trasora",
-    body:
-      "Building a social music platform from zero. Architected the full stack (Next.js, Spring Boot, PostgreSQL), implemented GA4 event schemas, and drove 100+ organic users within 90 days of launch.",
+    body: "Building a social music platform from zero. Architected the full stack (Next.js, Spring Boot, PostgreSQL), implemented GA4 event schemas, and drove 100+ organic users within 90 days of launch.",
   },
   {
     year: "2025",
     title: "Web Developer (Contract) — Founders In Focus",
-    body:
-      "Built a conversion-focused podcast website with GA4, Google Search Console, and mobile-first UX. Integrated automated distribution pipelines for Spotify and YouTube.",
+    body: "Built a conversion-focused podcast website with GA4, Google Search Console, and mobile-first UX. Integrated automated distribution pipelines for Spotify and YouTube.",
   },
   {
     year: "2024",
     title: "Baylor University — BBA Marketing, Summa Cum Laude",
-    body:
-      "GPA 3.97/4.0. 2024 Marketing Student of the Year. Presidential Scholar. Led a $10K integrated media campaign for Kid's R Kids as a client project.",
+    body: "GPA 3.97/4.0. 2024 Marketing Student of the Year. Presidential Scholar. Led a $10K integrated media campaign for Kid's R Kids as a client project.",
   },
   {
     year: "2023",
     title: "Founder & Marketing Lead — Desentify.com",
-    body:
-      "Managed $5K+ in paid media across TikTok, Meta, and Google Ads. Improved ROAS by 22% and conversion rate by 18% through A/B testing, Hotjar analysis, and 50+ ad creative iterations.",
+    body: "Managed $5K+ in paid media across TikTok, Meta, and Google Ads. Improved ROAS by 22% and conversion rate by 18% through A/B testing, Hotjar analysis, and 50+ ad creative iterations.",
   },
 ];
 
@@ -127,8 +122,8 @@ export default function AboutPage() {
     >
       <Sidebar activeLabel="About" />
 
-      <div className="ml-[72px] flex-1 flex flex-col min-h-screen">
-        <div className="flex-1 px-14 py-20 max-w-5xl w-full mx-auto">
+      <div className="lg:ml-[72px] flex-1 flex flex-col min-h-screen">
+        <div className="flex-1 px-5 sm:px-8 lg:px-14 py-12 lg:py-20 pb-24 lg:pb-20 max-w-5xl w-full mx-auto">
           {/* Header */}
           <motion.div className="mb-16" {...fadeUp(0.1)}>
             <p
@@ -200,21 +195,20 @@ export default function AboutPage() {
                 >
                   I&apos;m a full-stack engineer and growth marketer who
                   operates at the intersection of clean architecture and
-                  measurable outcomes. I build products end-to-end — from
-                  Django backends and React frontends to the GA4
-                  instrumentation that tracks how users actually behave
-                  inside them.
+                  measurable outcomes. I build products end-to-end — from Django
+                  backends and React frontends to the GA4 instrumentation that
+                  tracks how users actually behave inside them.
                 </p>
 
                 <p
                   className="text-[16px] leading-[1.85] font-light mt-5"
                   style={{ color: "rgba(255,255,255,0.38)" }}
                 >
-                  Currently building Trasora, a social music platform,
-                  where I own everything from the Spring Boot API to paid
-                  acquisition strategy. Summa Cum Laude graduate from
-                  Baylor University, 2024 Marketing Student of the Year,
-                  with certifications in GA4, HubSpot, SEMrush, and AWS.
+                  Currently building Trasora, a social music platform, where I
+                  own everything from the Spring Boot API to paid acquisition
+                  strategy. Summa Cum Laude graduate from Baylor University,
+                  2024 Marketing Student of the Year, with certifications in
+                  GA4, HubSpot, SEMrush, and AWS.
                 </p>
               </motion.div>
 
@@ -262,8 +256,7 @@ export default function AboutPage() {
                           className="w-2 h-2 rounded-full flex-shrink-0"
                           style={{
                             background: "rgba(255,255,255,0.12)",
-                            border:
-                              "1px solid rgba(255,255,255,0.2)",
+                            border: "1px solid rgba(255,255,255,0.2)",
                           }}
                         />
                       </div>
@@ -295,10 +288,7 @@ export default function AboutPage() {
 
             {/* Right */}
             <div className="lg:col-span-5">
-              <motion.div
-                className="flex flex-col gap-10"
-                {...fadeUp(0.3)}
-              >
+              <motion.div className="flex flex-col gap-10" {...fadeUp(0.3)}>
                 {/* Skills */}
                 <div>
                   <p
@@ -331,8 +321,7 @@ export default function AboutPage() {
                               className="text-[12px] px-3 py-1.5 border border-white/8 rounded-sm font-light"
                               style={{
                                 color: "rgba(255,255,255,0.5)",
-                                background:
-                                  "rgba(255,255,255,0.03)",
+                                background: "rgba(255,255,255,0.03)",
                               }}
                             >
                               {skill}
@@ -358,10 +347,7 @@ export default function AboutPage() {
 
                   <div className="flex flex-col gap-2.5">
                     {CERTIFICATIONS.map((cert) => (
-                      <div
-                        key={cert}
-                        className="flex items-center gap-2.5"
-                      >
+                      <div key={cert} className="flex items-center gap-2.5">
                         <span
                           className="w-1 h-1 rounded-full flex-shrink-0"
                           style={{ background: YELLOW }}
@@ -400,18 +386,15 @@ export default function AboutPage() {
                       },
                       {
                         label: "Growth Marketing",
-                        file:
-                          "/Gary_McCart_Growth_Marketing.pdf",
+                        file: "/Gary_McCart_Growth_Marketing.pdf",
                       },
                       {
                         label: "Digital Marketing",
-                        file:
-                          "/Gary_McCart_Digital_Marketing.pdf",
+                        file: "/Gary_McCart_Digital_Marketing.pdf",
                       },
                       {
                         label: "SEO & Paid Media",
-                        file:
-                          "/Gary_McCart_SEO_Paid_Marketer.pdf",
+                        file: "/Gary_McCart_SEO_Paid_Marketer.pdf",
                       },
                     ].map(({ label, file }) => (
                       <a
@@ -447,8 +430,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-
-        <FooterBar />
       </div>
     </main>
   );

@@ -18,55 +18,89 @@ const fadeUp = (delay = 0) => ({
   },
 });
 
+// Reusable pulsing glow — renders centered behind whatever it's inside
+function LogoGlow({ size = 500 }: { size?: number }) {
+  return (
+    <motion.div
+      className="absolute pointer-events-none"
+      style={{
+        width: size,
+        height: size,
+        top: "50%",
+        left: "50%",
+        marginTop: -size / 2,
+        marginLeft: -size / 2,
+        borderRadius: "50%",
+        background:
+          "radial-gradient(circle, rgba(245,197,24,0.32) 0%, rgba(245,197,24,0.12) 35%, transparent 65%)",
+        zIndex: 0,
+      }}
+      animate={{
+        opacity: [0.4, 1, 0.4],
+        scale: [0.88, 1.15, 0.88],
+      }}
+      transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity }}
+    />
+  );
+}
+
 export default function HeroSection() {
   const [variant, setVariant] = useState<"A" | "B">("A");
 
   return (
     <section className="relative flex-1 grid lg:grid-cols-2 min-h-[calc(100vh-53px)]">
 
-      {/* ── Code tag decorations ── */}
+      {/* ── Code tag decorations — hidden on mobile ── */}
       <span
-        className="absolute top-6 left-8 text-[11px] tracking-widest select-none pointer-events-none"
+        className="hidden lg:block absolute top-6 left-8 text-[11px] tracking-widest select-none pointer-events-none"
         style={{ color: YELLOW, fontFamily: "monospace", opacity: 0.5 }}
       >
         {"<body>"}
       </span>
       <span
-        className="absolute bottom-10 left-8 text-[11px] tracking-widest select-none pointer-events-none"
+        className="hidden lg:block absolute bottom-10 left-8 text-[11px] tracking-widest select-none pointer-events-none"
         style={{ color: YELLOW, fontFamily: "monospace", opacity: 0.5 }}
       >
         {"</body>"}
       </span>
       <span
-        className="absolute bottom-4 left-8 text-[11px] tracking-widest select-none pointer-events-none"
+        className="hidden lg:block absolute bottom-4 left-8 text-[11px] tracking-widest select-none pointer-events-none"
         style={{ color: YELLOW, fontFamily: "monospace", opacity: 0.5 }}
       >
         {"</html>"}
       </span>
 
-      {/* ── Pulsing glow — lives on the section so it bleeds freely ── */}
-      <motion.div
-        className="absolute pointer-events-none"
-        style={{
-          right: "25%",
-          top: "50%",
-          marginTop: -350,
-          marginRight: -350,
-          width: 700,
-          height: 700,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(245,197,24,0.28) 0%, rgba(245,197,24,0.10) 35%, transparent 65%)",
-          zIndex: 1,
-        }}
-        animate={{
-          opacity: [0.4, 1, 0.4],
-          scale: [0.88, 1.15, 0.88],
-        }}
-        transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity }}
-      />
-
-      {/* ── LEFT COLUMN ── */}
-      <div className="relative flex flex-col justify-center px-14 py-20 lg:py-0" style={{ zIndex: 2 }}>
+      {/* ── LEFT COLUMN (full width on mobile) ── */}
+      <div
+        className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-16 lg:py-0"
+        style={{ zIndex: 2 }}
+      >
+        {/* Mobile logo — shown only below lg */}
+        <motion.div
+          className="flex lg:hidden justify-center mb-8"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+        >
+          {/* Wrapper gives the glow something to be relative to */}
+          <div className="relative flex items-center justify-center">
+            <LogoGlow size={320} />
+            <Image
+              src="/G-light.png"
+              alt="Gary McCart logo mark"
+              width={180}
+              height={180}
+              priority
+              style={{
+                position: "relative",
+                zIndex: 1,
+                width: "min(180px, 45vw)",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </div>
+        </motion.div>
 
         {/* Eyebrow */}
         <motion.p
@@ -79,10 +113,10 @@ export default function HeroSection() {
 
         {/* Name */}
         <motion.h1
-          className="leading-[0.9] tracking-tight text-white mb-8"
+          className="leading-[0.9] tracking-tight text-white mb-6 sm:mb-8"
           style={{
             fontFamily: "'Bebas Neue', 'Arial Black', sans-serif",
-            fontSize: "clamp(72px, 8vw, 108px)",
+            fontSize: "clamp(60px, 14vw, 108px)",
           }}
           {...fadeUp(0.22)}
         >
@@ -109,55 +143,65 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* ── RIGHT COLUMN ── no overflow-hidden so hover glow bleeds left ── */}
-      <div className="hidden lg:flex items-center justify-center relative" style={{ zIndex: 2 }}>
-
+      {/* ── RIGHT COLUMN — desktop only ── */}
+      <div
+        className="hidden lg:flex items-center justify-center relative"
+        style={{ zIndex: 2 }}
+      >
         {/* Dot grid */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage: "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
+            backgroundImage:
+              "radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)",
             backgroundSize: "28px 28px",
-            maskImage: "radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 100%)",
-            WebkitMaskImage: "radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 100%)",
+            maskImage:
+              "radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 100%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 75% 75% at 50% 50%, black 40%, transparent 100%)",
           }}
         />
 
-        {/* Logo mark — hover tilt + expanding glow */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
-          whileHover={{ scale: 1.06, rotate: -2 }}
-          style={{
-            cursor: "pointer",
-            position: "relative",
-            zIndex: 3,
-            filter: "drop-shadow(0 0 48px rgba(245,197,24,0.2)) drop-shadow(0 0 90px rgba(245,197,24,0.08))",
-            transition: "filter 0.4s ease",
-          }}
-          onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
-            e.currentTarget.style.filter =
-              "drop-shadow(0 0 90px rgba(245,197,24,0.75)) drop-shadow(0 0 180px rgba(245,197,24,0.45)) drop-shadow(0 0 300px rgba(245,197,24,0.2))";
-          }}
-          onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
-            e.currentTarget.style.filter =
-              "drop-shadow(0 0 48px rgba(245,197,24,0.2)) drop-shadow(0 0 90px rgba(245,197,24,0.08))";
-          }}
-        >
-          <Image
-            src="/G-light.png"
-            alt="Gary McCart logo mark"
-            width={500}
-            height={500}
-            priority
+        {/* Logo mark — glow lives inside, always centered */}
+        <div className="relative flex items-center justify-center">
+          <LogoGlow size={700} />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+            whileHover={{ scale: 1.06, rotate: -2 }}
             style={{
-              maxWidth: "min(500px, 60vw)",
-              height: "auto",
-              display: "block",
+              cursor: "pointer",
+              position: "relative",
+              zIndex: 1,
+              filter:
+                "drop-shadow(0 0 48px rgba(245,197,24,0.2)) drop-shadow(0 0 90px rgba(245,197,24,0.08))",
+              transition: "filter 0.4s ease",
             }}
-          />
-        </motion.div>
+            onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+              e.currentTarget.style.filter =
+                "drop-shadow(0 0 90px rgba(245,197,24,0.75)) drop-shadow(0 0 180px rgba(245,197,24,0.45)) drop-shadow(0 0 300px rgba(245,197,24,0.2))";
+            }}
+            onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+              e.currentTarget.style.filter =
+                "drop-shadow(0 0 48px rgba(245,197,24,0.2)) drop-shadow(0 0 90px rgba(245,197,24,0.08))";
+            }}
+          >
+            <Image
+              src="/G-light.png"
+              alt="Gary McCart logo mark"
+              width={500}
+              height={500}
+              priority
+              style={{
+                maxWidth: "min(500px, 60vw)",
+                height: "auto",
+                display: "block",
+              }}
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

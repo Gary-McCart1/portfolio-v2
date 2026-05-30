@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
-import FooterBar from "@/components/FooterBar";
 
 const YELLOW = "#F5C518";
 const SANS = "'DM Sans', ui-sans-serif, sans-serif";
@@ -42,7 +41,12 @@ const CONTACT_LINKS = [
 type FormState = "idle" | "sending" | "sent" | "error";
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
   const [status, setStatus] = useState<FormState>("idle");
 
   function handleChange(
@@ -54,8 +58,7 @@ export default function ContactPage() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setStatus("sending");
-    // Wire up to your email service (Resend, Formspree, etc.)
-    await new Promise((r) => setTimeout(r, 1200)); // Simulated delay
+    await new Promise((r) => setTimeout(r, 1200));
     setStatus("sent");
   }
 
@@ -66,15 +69,15 @@ export default function ContactPage() {
     >
       <Sidebar activeLabel="Contact" />
 
-      <div className="ml-[72px] flex-1 flex flex-col min-h-screen">
-        <div className="flex-1 px-14 py-20 max-w-5xl w-full mx-auto">
+      <div className="lg:ml-[72px] flex-1 flex flex-col min-h-screen">
+        <div className="flex-1 px-5 sm:px-8 lg:px-14 py-12 lg:py-20 pb-24 lg:pb-20 max-w-5xl w-full mx-auto">
           {/* Header */}
           <motion.div className="mb-16" {...fadeUp(0.1)}>
             <p
               className="text-[11px] tracking-[0.22em] uppercase mb-3"
               style={{ color: YELLOW, fontFamily: "monospace" }}
             >
-              Get In Touch
+              Open To Work
             </p>
             <h1
               className="leading-[0.9] tracking-tight text-white"
@@ -83,11 +86,9 @@ export default function ContactPage() {
                 fontSize: "clamp(56px, 7vw, 88px)",
               }}
             >
-              Let&apos;s Build
+              Let&apos;s Work
               <br />
-              <span style={{ color: "rgba(255,255,255,0.35)" }}>
-                Something Real.
-              </span>
+              <span style={{ color: "rgba(255,255,255,0.35)" }}>Together.</span>
             </h1>
             <div
               className="w-12 h-px mt-6"
@@ -166,6 +167,28 @@ export default function ContactPage() {
                     </div>
                   </div>
 
+                  {/* Company (bonus field for recruiters) */}
+                  <div className="flex flex-col gap-2">
+                    <label
+                      className="text-[11px] tracking-[0.15em] uppercase"
+                      style={{
+                        color: "rgba(255,255,255,0.3)",
+                        fontFamily: "monospace",
+                      }}
+                    >
+                      Company
+                    </label>
+                    <input
+                      name="company"
+                      type="text"
+                      value={form.company}
+                      onChange={handleChange}
+                      placeholder="Where do you work? (optional)"
+                      className="bg-transparent border border-white/10 px-4 py-3 text-[14px] text-white placeholder:text-white/20 outline-none focus:border-white/30 transition-colors rounded-sm"
+                      style={{ fontFamily: SANS }}
+                    />
+                  </div>
+
                   {/* Message */}
                   <div className="flex flex-col gap-2">
                     <label
@@ -183,7 +206,7 @@ export default function ContactPage() {
                       rows={6}
                       value={form.message}
                       onChange={handleChange}
-                      placeholder="What are you working on?"
+                      placeholder="Tell me about the role or team..."
                       className="bg-transparent border border-white/10 px-4 py-3 text-[14px] text-white placeholder:text-white/20 outline-none focus:border-white/30 transition-colors resize-none rounded-sm"
                       style={{ fontFamily: SANS }}
                     />
@@ -197,7 +220,7 @@ export default function ContactPage() {
                       className="inline-flex items-center gap-2 px-7 py-3 text-[11px] tracking-[0.18em] uppercase font-semibold text-black transition-all hover:opacity-90 disabled:opacity-50"
                       style={{ background: YELLOW, borderRadius: "2px" }}
                     >
-                      {status === "sending" ? "Sending..." : "Send Message"}
+                      {status === "sending" ? "Sending..." : "Reach Out"}
                       {status !== "sending" && (
                         <svg
                           width="11"
@@ -228,7 +251,7 @@ export default function ContactPage() {
                 style={{ background: "rgba(255,255,255,0.02)" }}
               >
                 <span
-                  className="w-1.5 h-1.5 rounded-full flex-shrink-0"
+                  className="w-1.5 h-1.5 rounded-full flex-shrink-0 animate-pulse"
                   style={{
                     background: "#4ade80",
                     boxShadow: "0 0 6px rgba(74,222,128,0.6)",
@@ -238,20 +261,60 @@ export default function ContactPage() {
                   className="text-[12px] font-light"
                   style={{ color: "rgba(255,255,255,0.5)" }}
                 >
-                  Available for new projects
+                  Open to full-time roles
                 </span>
               </div>
 
               {/* Blurb */}
-              <div>
+              <div className="flex flex-col gap-4">
                 <p
                   className="text-[15px] leading-[1.8] font-light"
                   style={{ color: "rgba(255,255,255,0.45)" }}
                 >
-                  Whether it&apos;s a full product build, a growth audit, or
-                  just a conversation about architecture — I&apos;m happy to
-                  connect.
+                  I&apos;m actively looking for full-time opportunities in
+                  engineering, growth, or a hybrid role where both matter. If
+                  you&apos;re building something and need someone who can own
+                  the technical side and drive results — I&apos;d love to talk.
                 </p>
+                <p
+                  className="text-[13px] leading-[1.8] font-light"
+                  style={{ color: "rgba(255,255,255,0.25)" }}
+                >
+                  Based in Raleigh-Durham, NC. Open to remote or relocation for
+                  the right role.
+                </p>
+              </div>
+
+              {/* What I'm looking for */}
+              <div className="flex flex-col gap-3">
+                <p
+                  className="text-[11px] tracking-[0.22em] uppercase"
+                  style={{
+                    color: "rgba(255,255,255,0.2)",
+                    fontFamily: "monospace",
+                  }}
+                >
+                  Roles I&apos;m targeting
+                </p>
+                {[
+                  "Full-Stack Engineer",
+                  "Growth Engineer",
+                  "Marketing Engineer / Analyst",
+                  "Product Engineer",
+                ].map((role) => (
+                  <div key={role} className="flex items-center gap-2.5">
+                    <span
+                      className="w-1 h-1 rounded-full flex-shrink-0"
+                      style={{ background: YELLOW }}
+                    />
+                    <span
+                      className="text-[13px] font-light"
+                      style={{ color: "rgba(255,255,255,0.45)" }}
+                    >
+                      {role}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               {/* Direct links */}
@@ -296,8 +359,6 @@ export default function ContactPage() {
             </motion.div>
           </div>
         </div>
-
-        <FooterBar />
       </div>
     </main>
   );

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import Sidebar from "@/components/Sidebar";
-import FooterBar from "@/components/FooterBar";
 
 const YELLOW = "#F5C518";
 const SANS = "'DM Sans', ui-sans-serif, sans-serif";
@@ -649,6 +648,93 @@ const MARKETING_STACK = [
     ),
   },
 ];
+
+const CERTIFICATIONS = [
+  {
+    id: "cert-01",
+    issuer: "Amazon Web Services",
+    category: "Engineering",
+    path: "/certifications/aws-ccp.png",
+  },
+  {
+    id: "cert-02",
+    issuer: "Stanford Online",
+    category: "Engineering",
+    path: "/certifications/machine-learning-specialization.png",
+  },
+  {
+    id: "cert-03",
+    issuer: "DataCamp",
+    category: "Engineering",
+    path: "/certifications/datacamp.png",
+  },
+  {
+    id: "cert-04",
+    issuer: "Kaggle",
+    category: "Marketing",
+    path: "/certifications/GaryMcCart-DataVisualization.png",
+  },
+  {
+    id: "cert-05",
+    issuer: "Udemy",
+    category: "Engineering",
+    path: "/certifications/udemy-python.jpg",
+  },
+  {
+    id: "cert-06",
+    issuer: "Udemy",
+    category: "Engineering",
+    path: "/certifications/udemy-react.jpg",
+  },
+  {
+    id: "cert-07",
+    issuer: "Udemy",
+    category: "Engineering",
+    path: "/certifications/pytest-unittest.jpg",
+  },
+  {
+    id: "cert-08",
+    issuer: "Udemy",
+    category: "Engineering",
+    path: "/certifications/UC-c2665079-0e6b-4e94-8f99-9a51ba8eeb08.jpg",
+  },
+  {
+    id: "cert-09",
+    issuer: "Harvard / EDX",
+    category: "Engineering",
+    path: "/certifications/cs50databases.png",
+  },
+  {
+    id: "cert-10",
+    issuer: "Harvard / EDX",
+    category: "Engineering",
+    path: "/certifications/CS50SQL.png",
+  },
+  {
+    id: "cert-11",
+    issuer: "Harvard / EDX",
+    category: "Engineering",
+    path: "/certifications/CS50W.png",
+  },
+  {
+    id: "cert-12",
+    issuer: "HubSpot Academy",
+    category: "Marketing",
+    path: "/certifications/digital-marketing.png",
+  },
+  {
+    id: "cert-13",
+    issuer: "SEMRush",
+    category: "Marketing",
+    path: "/certifications/SEO.png",
+  },
+  {
+    id: "cert-14",
+    issuer: "Google",
+    category: "Marketing",
+    path: "/certifications/google_analytics.png",
+  },
+];
 // ─── Projects ────────────────────────────────────────────────────────
 interface Project {
   number: string;
@@ -841,11 +927,14 @@ function StackStrip({ variant }: { variant: Variant }) {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -6 }}
         transition={{ duration: 0.2 }}
-        className="flex flex-wrap items-center gap-4"
+        className="flex flex-wrap items-center gap-3"
       >
         <span
-          className="text-[10px] tracking-[0.18em] uppercase mr-1 flex-shrink-0"
-          style={{ color: "rgba(255, 255, 255, 0.371)", fontFamily: "monospace" }}
+          className="text-[10px] tracking-[0.18em] uppercase flex-shrink-0"
+          style={{
+            color: "rgba(255, 255, 255, 0.371)",
+            fontFamily: "monospace",
+          }}
         >
           {variant === "A" ? "Tech Stack" : "Marketing Stack"}
         </span>
@@ -873,124 +962,38 @@ function StackStrip({ variant }: { variant: Variant }) {
   );
 }
 
-const CERTIFICATIONS = [
-  {
-    id: "cert-01",
-    issuer: "Amazon Web Services",
-    category: "Engineering",
-    path: "/certifications/aws-ccp.png",
-  },
-  {
-    id: "cert-02",
-    issuer: "Stanford Online",
-    category: "Engineering",
-    path: "/certifications/machine-learning-specialization.png",
-  },
-  {
-    id: "cert-03",
-    issuer: "DataCamp",
-    category: "Engineering",
-    path: "/certifications/datacamp.png",
-  },
-  {
-    id: "cert-04",
-    issuer: "Kaggle",
-    category: "Marketing",
-    path: "/certifications/GaryMcCart-DataVisualization.png",
-  },
-  {
-    id: "cert-05",
-    issuer: "Udemy",
-    category: "Engineering",
-    path: "/certifications/udemy-python.jpg",
-  },
-  {
-    id: "cert-06",
-    issuer: "Udemy",
-    category: "Engineering",
-    path: "/certifications/udemy-react.jpg",
-  },
-  {
-    id: "cert-07",
-    issuer: "Udemy",
-    category: "Engineering",
-    path: "/certifications/pytest-unittest.jpg",
-  },
-  {
-    id: "cert-08",
-    issuer: "Udemy",
-    category: "Engineering",
-    path: "/certifications/UC-c2665079-0e6b-4e94-8f99-9a51ba8eeb08.jpg",
-  },
-  {
-    id: "cert-09",
-    issuer: "Harvard / EDX",
-    category: "Engineering",
-    path: "/certifications/cs50databases.png",
-  },
-  {
-    id: "cert-10",
-    issuer: "Harvard / EDX",
-    category: "Engineering",
-    path: "/certifications/CS50SQL.png",
-  },
-  {
-    id: "cert-11",
-    issuer: "Harvard / EDX",
-    category: "Engineering",
-    path: "/certifications/CS50W.png",
-  },
-  {
-    id: "cert-12",
-    issuer: "HubSpot Academy",
-    category: "Marketing",
-    path: "/certifications/digital-marketing.png",
-  },
-  {
-    id: "cert-13",
-    issuer: "SEMRush",
-    category: "Marketing",
-    path: "/certifications/SEO.png",
-  },
-  {
-    id: "cert-14",
-    issuer: "Google",
-    category: "Marketing",
-    path: "/certifications/google_analytics.png",
-  },
-];
-
 // ─── Page ─────────────────────────────────────────────────────────────
 export default function WorkPage() {
   const [variant, setVariant] = useState<Variant>("A");
- 
+
   return (
     <main
       className="min-h-screen bg-[#0e0e0e] text-white selection:bg-[#F5C518] selection:text-black antialiased flex"
       style={{ fontFamily: SANS }}
     >
       <Sidebar activeLabel="Work" />
- 
-      <div className="ml-[72px] flex-1 flex flex-col min-h-screen">
-        <div className="flex-1 px-14 py-20 max-w-6xl w-full mx-auto">
+
+      {/* Sidebar is 72px wide on lg+, hidden (or overlay) on mobile */}
+      <div className="lg:ml-[72px] flex-1 flex flex-col min-h-screen">
+        <div className="flex-1 px-5 sm:px-8 lg:px-14 py-12 lg:py-20 pb-24 lg:pb-20 max-w-6xl w-full mx-auto">
           {/* ── Header ── */}
-          <motion.div className="mb-16" {...fadeUp(0.1)}>
+          <motion.div className="mb-10 lg:mb-16" {...fadeUp(0.1)}>
             <p
               className="text-[11px] tracking-[0.22em] uppercase mb-5"
               style={{ color: YELLOW, fontFamily: "monospace" }}
             >
               Selected Work
             </p>
- 
-            {/* Big A/B tab cards */}
-            <div className="grid grid-cols-2 gap-3 mb-0">
+
+            {/* A/B tab cards — single column on mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-0">
               {(["A", "B"] as Variant[]).map((v) => {
                 const active = variant === v;
                 return (
                   <button
                     key={v}
                     onClick={() => setVariant(v)}
-                    className="relative text-left px-8 py-6 border rounded-sm transition-all duration-300 overflow-hidden"
+                    className="relative text-left px-5 sm:px-8 py-5 sm:py-6 border rounded-sm transition-all duration-300 overflow-hidden"
                     style={{
                       borderColor: active ? YELLOW : "rgba(255,255,255,0.07)",
                       background: active
@@ -1024,7 +1027,7 @@ export default function WorkPage() {
                       className="leading-none tracking-tight transition-colors duration-300"
                       style={{
                         fontFamily: "'Bebas Neue', sans-serif",
-                        fontSize: "clamp(34px, 3.5vw, 54px)",
+                        fontSize: "clamp(28px, 5vw, 54px)",
                         color: active ? "#fff" : "rgba(255,255,255,0.25)",
                       }}
                     >
@@ -1048,59 +1051,23 @@ export default function WorkPage() {
                 );
               })}
             </div>
- 
-            {/* Stack + Certifications Row */}
-            <div className="flex items-center justify-between gap-6 mt-6 pt-6 border-t border-white/5">
+
+            {/* Stack + Certifications Row — stacks vertically on mobile */}
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mt-6 pt-6 border-t border-white/5">
               <StackStrip variant={variant} />
- 
+
               {/* Certifications Jump Link */}
               <motion.a
                 href="#certifications"
                 {...fadeUp(0.18)}
-                className="
-      inline-flex
-      items-center
-      gap-3
-      border
-      border-white/10
-      bg-white/[0.02]
-      px-5
-      py-3
-      rounded-xl
-      transition-all
-      duration-300
-      hover:border-[#F5C518]
-      hover:bg-[#F5C518]/[0.04]
-      group
-      flex-shrink-0
-    "
+                className="inline-flex items-center gap-3 border border-white/10 bg-white/[0.02] px-5 py-3 rounded-xl transition-all duration-300 hover:border-[#F5C518] hover:bg-[#F5C518]/[0.04] group flex-shrink-0 self-start sm:self-auto"
               >
-                <div
-                  className="
-        flex
-        items-center
-        justify-center
-        w-8
-        h-8
-        rounded-full
-        border
-        border-white/10
-        transition-all
-        duration-300
-        group-hover:border-[#F5C518]
-      "
-                >
+                <div className="flex items-center justify-center w-8 h-8 rounded-full border border-white/10 transition-all duration-300 group-hover:border-[#F5C518]">
                   <ArrowDownRight
                     size={14}
-                    className="
-          text-white/50
-          transition-all
-          duration-300
-          group-hover:text-[#F5C518]
-        "
+                    className="text-white/50 transition-all duration-300 group-hover:text-[#F5C518]"
                   />
                 </div>
- 
                 <div className="text-left">
                   <p
                     className="text-[11px] tracking-[0.2em] uppercase"
@@ -1111,7 +1078,6 @@ export default function WorkPage() {
                   >
                     Certifications
                   </p>
- 
                   <p className="text-[12px] text-white/55 mt-0.5">
                     View credentials
                   </p>
@@ -1119,7 +1085,7 @@ export default function WorkPage() {
               </motion.a>
             </div>
           </motion.div>
- 
+
           {/* ── Project list ── */}
           <div className="flex flex-col divide-y divide-white/5">
             {PROJECTS.map((project, i) => {
@@ -1128,10 +1094,11 @@ export default function WorkPage() {
               return (
                 <motion.div
                   key={project.number}
-                  className="group py-12 grid lg:grid-cols-12 gap-8 items-start"
+                  className="group py-8 lg:py-12 grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-start"
                   {...fadeUp(0.1 + i * 0.06)}
                 >
-                  <div className="lg:col-span-1 pt-1">
+                  {/* Project number — inline on mobile */}
+                  <div className="lg:col-span-1 lg:pt-1 flex lg:block items-center gap-3">
                     <span
                       className="text-[12px] tracking-widest"
                       style={{
@@ -1141,8 +1108,16 @@ export default function WorkPage() {
                     >
                       {project.number}
                     </span>
+                    {/* Title shown next to number on mobile only */}
+                    <h2
+                      className="lg:hidden text-[18px] font-medium group-hover:text-[#F5C518] transition-colors duration-300"
+                      style={{ letterSpacing: "-0.01em" }}
+                    >
+                      {project.title}
+                    </h2>
                   </div>
- 
+
+                  {/* Image — full width on mobile */}
                   <div className="lg:col-span-3">
                     <div
                       className="w-full aspect-video rounded-sm overflow-hidden border border-white/5"
@@ -1155,10 +1130,12 @@ export default function WorkPage() {
                       />
                     </div>
                   </div>
- 
+
+                  {/* Description col */}
                   <div className="lg:col-span-5">
+                    {/* Title hidden on mobile (shown above image) */}
                     <h2
-                      className="text-[22px] font-medium mb-3 group-hover:text-[#F5C518] transition-colors duration-300"
+                      className="hidden lg:block text-[22px] font-medium mb-3 group-hover:text-[#F5C518] transition-colors duration-300"
                       style={{ letterSpacing: "-0.01em" }}
                     >
                       {project.title}
@@ -1197,7 +1174,8 @@ export default function WorkPage() {
                       </motion.p>
                     </AnimatePresence>
                   </div>
- 
+
+                  {/* Outcomes + links */}
                   <div className="lg:col-span-3 flex flex-col gap-5">
                     <AnimatePresence mode="wait">
                       <motion.ul
@@ -1263,14 +1241,14 @@ export default function WorkPage() {
               );
             })}
           </div>
- 
-          {/* ── Certifications Section ───────────────────────────── */}
+
+          {/* ── Certifications Section ── */}
           <div
-            className="mt-32 border-t border-white/10 pt-16"
+            className="mt-20 lg:mt-32 border-t border-white/10 pt-12 lg:pt-16"
             id="certifications"
           >
-            {/* Header */}
-            <div className="flex items-end justify-between gap-6 mb-10">
+            {/* Header — stacks on mobile */}
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-5 mb-10">
               <div>
                 <p
                   className="text-[11px] tracking-[0.22em] uppercase mb-3"
@@ -1281,19 +1259,17 @@ export default function WorkPage() {
                 >
                   Certifications
                 </p>
- 
-                <h3 className="text-3xl tracking-tight text-white font-medium">
+                <h3 className="text-2xl lg:text-3xl tracking-tight text-white font-medium">
                   {variant === "A"
                     ? "Engineering Certifications"
                     : "Marketing Certifications"}
                 </h3>
               </div>
- 
+
               {/* Toggle */}
-              <div className="flex items-center gap-2 border border-white/10 bg-white/[0.02] p-1 rounded-xl">
+              <div className="flex items-center gap-2 border border-white/10 bg-white/[0.02] p-1 rounded-xl self-start sm:self-auto">
                 {(["A", "B"] as Variant[]).map((v) => {
                   const active = variant === v;
- 
                   return (
                     <button
                       key={v}
@@ -1311,9 +1287,9 @@ export default function WorkPage() {
                 })}
               </div>
             </div>
- 
-            {/* Filtered certifications */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+            {/* Cert cards — 1 col mobile, 2 tablet, 3 desktop */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {CERTIFICATIONS.filter((cert) =>
                 variant === "A"
                   ? cert.category === "Engineering"
@@ -1325,34 +1301,15 @@ export default function WorkPage() {
                   target="_blank"
                   rel="noreferrer"
                   {...fadeUp(0.08 + index * 0.04)}
-                  className="
-          group
-          overflow-hidden
-          rounded-2xl
-          border border-white/[0.06]
-          bg-white/[0.02]
-          transition-all duration-300
-          hover:border-white/[0.14]
-          hover:bg-white/[0.03]
-          hover:-translate-y-[2px]
-        "
+                  className="group overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-300 hover:border-white/[0.14] hover:bg-white/[0.03] hover:-translate-y-[2px]"
                 >
-                  {/* Image */}
                   <div className="relative aspect-[1.35] overflow-hidden border-b border-white/[0.05] bg-[#111]">
                     <img
                       src={cert.path}
                       alt={cert.issuer}
-                      className="
-              h-full
-              w-full
-              object-cover
-              transition-transform duration-700
-              group-hover:scale-[1.03]
-            "
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                     />
                   </div>
- 
-                  {/* Bottom */}
                   <div className="flex items-center justify-between p-5">
                     <p
                       className="text-[12px] tracking-[0.16em] uppercase"
@@ -1363,16 +1320,9 @@ export default function WorkPage() {
                     >
                       Issued By: {cert.issuer}
                     </p>
- 
                     <ArrowUpRight
                       size={15}
-                      className="
-              text-white/25
-              transition-all duration-300
-              group-hover:text-white/70
-              group-hover:-translate-y-0.5
-              group-hover:translate-x-0.5
-            "
+                      className="text-white/25 transition-all duration-300 group-hover:text-white/70 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     />
                   </div>
                 </motion.a>
@@ -1380,8 +1330,6 @@ export default function WorkPage() {
             </div>
           </div>
         </div>
- 
-        <FooterBar />
       </div>
     </main>
   );
