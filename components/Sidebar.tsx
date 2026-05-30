@@ -74,7 +74,10 @@ export default function Sidebar({ activeLabel = "Home" }: SidebarProps) {
       {/* ── Mobile bottom tab bar — below lg only ── */}
       <nav
         className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#090909] border-t border-white/5 flex items-center justify-around px-2 pt-3"
-       
+        style={{
+          paddingBottom: "calc(0.25rem + env(safe-area-inset-bottom))",
+          boxShadow: "0 100vh 0 100vh #090909",
+        }}
       >
         {NAV_ITEMS.map(({ icon: Icon, label, href }) => {
           const active = activeLabel === label;
