@@ -74,7 +74,7 @@ export default function HeroSection() {
 
       {/* ── LEFT COLUMN ── */}
       <div
-        className="relative flex flex-col justify-center pr-[4rem] md:pr-0 sm:px-10 lg:px-14 pt-10 pb-8 lg:py-0"
+        className="relative flex flex-col justify-center pr-[4rem] md:pr-0 sm:px-10 lg:px-14 pt-10 pb-20 lg:py-0"
         style={{ zIndex: 2 }}
       >
         {/* Mobile logo */}
@@ -84,23 +84,6 @@ export default function HeroSection() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          <div className="relative flex items-center justify-center">
-            <LogoGlow size={280} />
-            <Image
-              src="/G-light.png"
-              alt="Gary McCart logo mark"
-              width={150}
-              height={150}
-              priority
-              style={{
-                position: "relative",
-                zIndex: 1,
-                width: "min(150px, 38vw)",
-                height: "auto",
-                display: "block",
-              }}
-            />
-          </div>
         </motion.div>
 
         {/* Eyebrow */}
