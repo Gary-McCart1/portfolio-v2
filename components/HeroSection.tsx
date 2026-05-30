@@ -18,7 +18,6 @@ const fadeUp = (delay = 0) => ({
   },
 });
 
-// Reusable pulsing glow — renders centered behind whatever it's inside
 function LogoGlow({ size = 500 }: { size?: number }) {
   return (
     <motion.div
@@ -35,10 +34,7 @@ function LogoGlow({ size = 500 }: { size?: number }) {
           "radial-gradient(circle, rgba(245,197,24,0.32) 0%, rgba(245,197,24,0.12) 35%, transparent 65%)",
         zIndex: 0,
       }}
-      animate={{
-        opacity: [0.4, 1, 0.4],
-        scale: [0.88, 1.15, 0.88],
-      }}
+      animate={{ opacity: [0.4, 1, 0.4], scale: [0.88, 1.15, 0.88] }}
       transition={{ duration: 2.2, ease: "easeInOut", repeat: Infinity }}
     />
   );
@@ -48,9 +44,15 @@ export default function HeroSection() {
   const [variant, setVariant] = useState<"A" | "B">("A");
 
   return (
-    <section className="relative flex-1 grid lg:grid-cols-2 min-h-[calc(100vh-53px)]">
-
-      {/* ── Code tag decorations — hidden on mobile ── */}
+    <section
+      className="relative flex-1 grid lg:grid-cols-2"
+      style={{
+        // On mobile: full viewport minus the bottom tab bar (~64px)
+        // On desktop: full viewport minus the top nav (~53px)
+        minHeight: "calc(100vh - 64px)",
+      }}
+    >
+      {/* ── Code tag decorations — desktop only ── */}
       <span
         className="hidden lg:block absolute top-6 left-8 text-[11px] tracking-widest select-none pointer-events-none"
         style={{ color: YELLOW, fontFamily: "monospace", opacity: 0.5 }}
@@ -70,31 +72,30 @@ export default function HeroSection() {
         {"</html>"}
       </span>
 
-      {/* ── LEFT COLUMN (full width on mobile) ── */}
+      {/* ── LEFT COLUMN ── */}
       <div
-        className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 py-16 lg:py-0"
+        className="relative flex flex-col justify-center pr-[4rem] md:pr-0 sm:px-10 lg:px-14 pt-10 pb-8 lg:py-0"
         style={{ zIndex: 2 }}
       >
-        {/* Mobile logo — shown only below lg */}
+        {/* Mobile logo */}
         <motion.div
-          className="flex lg:hidden justify-center mb-8"
+          className="flex lg:hidden justify-center mb-6"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
         >
-          {/* Wrapper gives the glow something to be relative to */}
           <div className="relative flex items-center justify-center">
-            <LogoGlow size={320} />
+            <LogoGlow size={280} />
             <Image
               src="/G-light.png"
               alt="Gary McCart logo mark"
-              width={180}
-              height={180}
+              width={150}
+              height={150}
               priority
               style={{
                 position: "relative",
                 zIndex: 1,
-                width: "min(180px, 45vw)",
+                width: "min(150px, 38vw)",
                 height: "auto",
                 display: "block",
               }}
@@ -104,7 +105,7 @@ export default function HeroSection() {
 
         {/* Eyebrow */}
         <motion.p
-          className="text-[11px] tracking-[0.22em] uppercase mt-4 mb-3"
+          className="text-[11px] tracking-[0.22em] uppercase mb-3"
           style={{ color: YELLOW, fontFamily: "monospace" }}
           {...fadeUp(0.18)}
         >
@@ -113,10 +114,10 @@ export default function HeroSection() {
 
         {/* Name */}
         <motion.h1
-          className="leading-[0.9] tracking-tight text-white mb-6 sm:mb-8"
+          className="leading-[0.9] tracking-tight text-white mb-5 sm:mb-7"
           style={{
             fontFamily: "'Bebas Neue', 'Arial Black', sans-serif",
-            fontSize: "clamp(60px, 14vw, 108px)",
+            fontSize: "clamp(52px, 13vw, 108px)",
           }}
           {...fadeUp(0.22)}
         >
@@ -132,13 +133,13 @@ export default function HeroSection() {
 
         {/* Divider */}
         <motion.div
-          className="w-12 h-px mt-3"
+          className="w-12 h-px mt-3 mb-1"
           style={{ background: YELLOW, opacity: 0.6 }}
           {...fadeUp(0.28)}
         />
 
-        {/* CTAs */}
-        <motion.div {...fadeUp(0.34)}>
+        {/* CTAs — extra bottom padding on mobile to clear tab bar */}
+        <motion.div className="pb-4 lg:pb-0" {...fadeUp(0.34)}>
           <CtaButtons />
         </motion.div>
       </div>
@@ -162,7 +163,6 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Logo mark — glow lives inside, always centered */}
         <div className="relative flex items-center justify-center">
           <LogoGlow size={700} />
 
