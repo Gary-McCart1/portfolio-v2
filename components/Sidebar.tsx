@@ -72,6 +72,10 @@ export default function Sidebar({ activeLabel = "Home" }: SidebarProps) {
       </aside>
 
       {/* ── Mobile bottom tab bar — below lg only ── */}
+      <div
+        className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#090909]"
+        style={{ height: "calc(4rem + 100px)" }}
+      />
       <nav
         className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#090909] border-t border-white/5 flex items-center justify-around px-2 pt-3"
         style={{
